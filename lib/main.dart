@@ -18,10 +18,58 @@ class NeoSceneApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF0A0E21),
         fontFamily: 'sans-serif',
       ),
-      home: const ReelsFeed(),
+      home: const MainScreen(),
     );
   }
 }
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    const ReelsFeed(),
+    const SearchScreen(),
+    const ProfileScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(() => _currentIndex = index),
+        backgroundColor: const Color(0xFF0A0E21),
+        selectedItemColor: const Color(0xFF00E5FF),
+        unselectedItemColor: Colors.white38,
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------- Reels Feed (from previous step) ----------
 
 class ReelsFeed extends StatefulWidget {
   const ReelsFeed({super.key});
@@ -87,61 +135,29 @@ class _ReelsFeedState extends State<ReelsFeed> {
   Widget _buildClipPage(DramaClip clip) {
     return Stack(
       children: [
-        // Background color as placeholder for video
-        Container(
-          color: clip.thumbnailColor,
-          child: Center(
-            child: Text(
-              clip.icon,
-              style: const TextStyle(fontSize: 80),
-            ),
-          ),
-        ),
-        // Gradient overlay for text readability
+        Container(color: clip.thumbnailColor, child: Center(child: Text(clip.icon, style: const TextStyle(fontSize: 80)))),
         Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
+          bottom: 0, left: 0, right: 0,
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.8),
-                ],
+                begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
               ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  clip.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(clip.title, style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 8),
-                Text(
-                  clip.description,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
-                    fontSize: 14,
-                  ),
-                ),
+                Text(clip.description, style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14)),
                 const SizedBox(height: 20),
                 Row(
                   children: [
                     const Icon(Icons.favorite, color: Color(0xFF00E5FF), size: 22),
                     const SizedBox(width: 6),
-                    Text(
-                      '${clip.likes}',
-                      style: const TextStyle(color: Colors.white70, fontSize: 14),
-                    ),
+                    Text('${clip.likes}', style: const TextStyle(color: Colors.white70, fontSize: 14)),
                     const Spacer(),
                     const Icon(Icons.chat_bubble_outline, color: Colors.white70, size: 22),
                     const SizedBox(width: 6),
@@ -152,27 +168,38 @@ class _ReelsFeedState extends State<ReelsFeed> {
             ),
           ),
         ),
-        // Top bar with app name
         Positioned(
-          top: 40,
-          left: 20,
+          top: 40, left: 20,
           child: Row(
             children: [
               const Icon(Icons.ondemand_video, color: Color(0xFF00E5FF), size: 28),
               const SizedBox(width: 8),
-              const Text(
-                'NeoScene',
-                style: TextStyle(
-                  color: Color(0xFF00E5FF),
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              const Text('NeoScene', style: TextStyle(color: Color(0xFF00E5FF), fontSize: 22, fontWeight: FontWeight.bold)),
             ],
           ),
         ),
       ],
     );
+  }
+}
+
+// ---------- Placeholder Screens ----------
+
+class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('🔍 Search', style: TextStyle(color: Colors.white70, fontSize: 24)));
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('👤 Profile', style: TextStyle(color: Colors.white70, fontSize: 24)));
   }
 }
 

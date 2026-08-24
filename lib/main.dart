@@ -28,7 +28,7 @@ class NeoSceneApp extends StatelessWidget {
           secondary: Color(0xFF00E5FF),
         ),
       ),
-      home: const AuthScreen(), // Start with auth screen
+      home: const AuthScreen(),
     );
   }
 }

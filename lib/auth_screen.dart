@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'reels_feed.dart'; // We'll create this next
+import 'reels_feed.dart'; // You'll create this later
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -120,13 +120,13 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 }
 
-// Placeholder MainScreen (reuse your existing ReelsFeed or create a simple one)
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF0A0E21),
       body: Center(
         child: Text(
           'Welcome to NeoScene!',

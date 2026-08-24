@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'auth_screen.dart';
 import 'reels_feed.dart';
+import 'upload_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,7 +70,7 @@ class _MainShellState extends State<MainShell> {
 
   final List<Widget> _screens = [
     const ReelsFeed(),
-    const UploadPlaceholder(),
+    const UploadScreen(),
     const ProfilePlaceholder(),
   ];
 
@@ -93,23 +94,13 @@ class _MainShellState extends State<MainShell> {
   }
 }
 
-// Placeholder until we build these screens
-class UploadPlaceholder extends StatelessWidget {
-  const UploadPlaceholder({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Upload Screen - Coming Soon', style: TextStyle(color: Colors.white70, fontSize: 18)),
-    );
-  }
-}
-
 class ProfilePlaceholder extends StatelessWidget {
   const ProfilePlaceholder({super.key});
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Profile Screen - Coming Soon', style: TextStyle(color: Colors.white70, fontSize: 18)),
+      child: Text('Profile Screen - Coming Soon',
+          style: TextStyle(color: Colors.white70, fontSize: 18)),
     );
   }
 }

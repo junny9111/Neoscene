@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'reels_feed.dart'; // You'll create this later
+import 'reels_feed.dart'; // Make sure reels_feed.dart exists
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -125,14 +125,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0A0E21),
-      body: Center(
-        child: Text(
-          'Welcome to NeoScene!',
-          style: TextStyle(color: Color(0xFF00E5FF), fontSize: 24),
-        ),
-      ),
-    );
+    return const ReelsFeed();
   }
 }
